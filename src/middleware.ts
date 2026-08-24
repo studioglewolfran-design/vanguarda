@@ -5,11 +5,27 @@ import { createServerClient } from "@supabase/ssr"
 const protectedRoutes = ["/dashboard"]
 
 export async function middleware(request: NextRequest) {
-  const response = await updateSession(request)
-
   const isProtected = protectedRoutes.some((route) =>
     request.nextUrl.pathname.startsWith(route)
   )
+
+  const hasSupabaseConfig = Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  )
+
+  if (!hasSupabaseConfig) {
+    if (isProtected) {
+      const url = request.nextUrl.clone()
+      url.pathname = "/login"
+      url.searchParams.set("error", "configuration")
+      return NextResponse.redirect(url)
+    }
+
+    return NextResponse.next()
+  }
+
+  const response = await updateSession(request)
 
   if (isProtected) {
     const supabase = createServerClient(
