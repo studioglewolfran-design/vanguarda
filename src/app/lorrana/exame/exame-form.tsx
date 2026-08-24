@@ -172,6 +172,9 @@ export function ExameForm() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand-atmos">Para Lorrana</p>
           <h1 className="max-w-md text-[2rem] font-semibold leading-[1.05] tracking-[-0.02em]">Exame de crenças e motores</h1>
           <p className="mt-5 max-w-lg text-[15px] leading-6 text-surface-300">Este não é um teste e não existem respostas certas. Responda com sinceridade — mesmo que a resposta ainda pareça incompleta.</p>
+          <p className="mt-5 rounded-2xl border border-surface-700 bg-surface-900 px-4 py-3 text-sm leading-6 text-surface-200">
+            O formulário tem <strong className="text-white">3 partes</strong>. Ao terminar cada uma, toque em continuar. As respostas só serão enviadas no final da parte 3.
+          </p>
           <div className="mt-7 h-1.5 overflow-hidden rounded-full bg-surface-700" aria-label={`Etapa ${step + 1} de 3`}>
             <div className="h-full rounded-full bg-brand-atmos transition-all duration-300" style={{ width: `${((step + 1) / 3) * 100}%` }} />
           </div>
@@ -223,7 +226,7 @@ export function ExameForm() {
           <div className="mt-9 flex gap-3 border-t border-surface-100 pt-6">
             {step > 0 && <button type="button" onClick={() => goTo(step - 1)} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-surface-200 px-4 font-medium text-surface-700"><ArrowLeft size={18} /> Voltar</button>}
             {step < 2 ? (
-              <button type="button" onClick={() => goTo(step + 1)} className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-surface-950 px-5 font-semibold text-white">Continuar <ArrowRight size={18} /></button>
+              <button type="button" onClick={() => goTo(step + 1)} className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-surface-950 px-5 font-semibold text-white">Ir para a parte {step + 2} <ArrowRight size={18} /></button>
             ) : (
               <button type="submit" disabled={status === "sending"} className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-surface-950 px-5 font-semibold text-white disabled:opacity-60">
                 {status === "sending" ? <><LoaderCircle className="animate-spin" size={18} /> Enviando…</> : <>Enviar respostas <ArrowRight size={18} /></>}
