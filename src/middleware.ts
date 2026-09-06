@@ -2,9 +2,13 @@ import { type NextRequest, NextResponse } from "next/server"
 import { updateSession } from "@/lib/supabase/middleware"
 import { createServerClient } from "@supabase/ssr"
 
-const protectedRoutes = ["/dashboard"]
+const protectedRoutes = ["/os"]
 
 export async function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.redirect(new URL("/os", request.url))
+  }
+
   const isProtected = protectedRoutes.some((route) =>
     request.nextUrl.pathname.startsWith(route)
   )

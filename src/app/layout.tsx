@@ -18,8 +18,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vanguarda",
-  description: "Aplicacao web fullstack moderna",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  title: {
+    default: "Studio Gle Wolfran",
+    template: "%s · Studio Gle Wolfran",
+  },
+  description: "Estratégia, direção criativa e sistemas vivos de marca.",
 };
 
 export default function RootLayout({
@@ -28,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body
         className={`${outfit.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >

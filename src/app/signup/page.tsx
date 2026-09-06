@@ -27,7 +27,7 @@ function SignupForm() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Criar conta</CardTitle>
           <CardDescription>
-            Crie sua conta Vanguarda
+            Crie sua conta Studio Gle Wolfran
           </CardDescription>
         </CardHeader>
         <CardContent>

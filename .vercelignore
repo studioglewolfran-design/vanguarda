@@ -1,0 +1,25 @@
+# Local and sensitive workspace material is not part of the Preview deployment.
+.env*
+!.env.example
+docs/**
+Inner Atlas/**
+tmp/**
+output/**
+entregaveis/**
+diagnostico-marca/**
+diretrizes/**
+scripts/**
+*.pdf
+*.docx
+*.pptx
+*.zip
+*.tar.gz
+*.log
+
+# Local assistant configuration and working notes.
+.claude/**
+.agents/**
+AGENTS.md
+CLAUDE.md
+LEIA-ME_STATUS.md
+ONDE-PAREI.md

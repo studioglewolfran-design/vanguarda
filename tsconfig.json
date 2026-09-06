@@ -35,6 +35,7 @@
     "**/*.stories.ts",
     "**/*.stories.tsx",
     ".storybook",
+    "Inner Atlas",
     "tmp"
   ]
 }

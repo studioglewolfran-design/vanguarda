@@ -26,7 +26,7 @@ function LoginForm() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Entrar</CardTitle>
           <CardDescription>
-            Acesse sua conta Vanguarda
+            Acesse sua conta Studio Gle Wolfran
           </CardDescription>
         </CardHeader>
         <CardContent>
