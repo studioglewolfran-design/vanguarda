@@ -1,6 +1,7 @@
-# Vanguarda
+# Studio AI
 
-Aplicacao web fullstack moderna construida com Next.js e Supabase.
+Aplicacao interna do Studio Gle Wolfran, construida com Next.js e Supabase.
+Ela nasceu do template tecnico Vanguarda.
 
 ## Stack
 
@@ -25,9 +26,8 @@ Aplicacao web fullstack moderna construida com Next.js e Supabase.
 ## Setup local
 
 ```bash
-# 1. Clone o repositorio
-git clone https://github.com/ruandaoverlens/vanguarda.git
-cd vanguarda
+# 1. Entre no projeto
+cd studio-ai
 
 # 2. Instale as dependencias
 npm install
@@ -42,21 +42,29 @@ npm run dev
 
 Acesse [http://localhost:3000](http://localhost:3000) para ver o resultado.
 
-## Estrutura do projeto
+## Estrutura do workspace
 
 ```
-vanguarda/
+studio-ai/
 ├── src/
 │   ├── app/          # App Router (pages, layouts, rotas)
 │   ├── components/   # Componentes React reutilizaveis
 │   ├── lib/          # Utilitarios e configuracoes (supabase client)
 │   └── types/        # Tipos TypeScript
 ├── public/           # Assets estaticos
+├── docs/             # Documentacao viva, backlog e estado operacional
+├── entregaveis/      # Arquivos finais locais por cliente (fora do Git)
+├── tmp/              # Renders e arquivos intermediarios (fora do Git)
+├── output/           # Artefatos gerados localmente (fora do Git)
+├── Inner Atlas/      # Projeto independente, com Git proprio
 ├── .env.example      # Template de variaveis de ambiente
-├── CLAUDE.md         # Contexto do projeto para o Claude Code
-└── TASKS.md          # Roadmap e controle de tarefas
+├── AGENTS.md         # Contexto e convencoes para agentes
+├── CLAUDE.md         # Contexto compativel com Claude Code
+└── TASKS.md          # Tracking rapido de marcos
 ```
 
 ## Decisoes tecnicas
 
-Documentadas em `CLAUDE.md`. Progresso em `TASKS.md`.
+As convencoes tecnicas estao em `AGENTS.md` e `CLAUDE.md`. Para localizar ou
+criar documentos, consulte `docs/README.md`. O backlog de desenvolvimento esta
+em `docs/BACKLOG.md` e os marcos resumidos em `TASKS.md`.

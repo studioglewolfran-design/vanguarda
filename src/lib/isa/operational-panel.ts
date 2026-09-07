@@ -35,6 +35,7 @@ export type ClaritySnapshot = {
   confirmed: string[]
   pending: string[]
 }
+export type IsaUpdate = { date: string; origin: string; change: string; status: string; location: string }
 export type OperationalPanel = {
   lastConsolidation: string
   priorities: string[]
@@ -49,6 +50,7 @@ export type OperationalPanel = {
   tasks: OperationalTask[]
   clients: ClientRecord[]
   clarity: ClaritySnapshot
+  isaUpdates: IsaUpdate[]
 }
 
 const PANEL_PATH = path.join(process.cwd(), "docs", "PAINEL-OPERACIONAL.md")
@@ -56,6 +58,7 @@ const CONTEXT_PATH = path.join(process.cwd(), "docs", "CONTEXTO-OPERACIONAL-04-0
 const ORBITAL_PATH = path.join(process.cwd(), "docs", "CAMPO-ORBITAL.md")
 const CLIENTS_PATH = path.join(process.cwd(), "docs", "clientes", "CLIENTES.md")
 const CLARITY_PATH = path.join(process.cwd(), "docs", "CLAREZA-MESTRA.md")
+const ISA_UPDATES_PATH = path.join(process.cwd(), "docs", "ISA-ATUALIZACOES.md")
 
 function section(markdown: string, heading: string, nextHeading: string) {
   const start = markdown.indexOf(heading)
@@ -86,12 +89,13 @@ export async function readOperationalPanel(): Promise<OperationalPanel> {
   const dataMode = process.env.STUDIO_OS_DATA_MODE ?? (process.env.VERCEL ? "demo" : "files")
   if (dataMode === "demo") return demoOperationalPanel
 
-  const [markdown, context, orbital, clientsMarkdown, clarityMarkdown] = await Promise.all([
+  const [markdown, context, orbital, clientsMarkdown, clarityMarkdown, isaUpdatesMarkdown] = await Promise.all([
     readFile(PANEL_PATH, "utf8"),
     readFile(CONTEXT_PATH, "utf8"),
     readFile(ORBITAL_PATH, "utf8"),
     readFile(CLIENTS_PATH, "utf8"),
     readFile(CLARITY_PATH, "utf8"),
+    readFile(ISA_UPDATES_PATH, "utf8"),
   ])
   const prioritiesSection = section(markdown, "## 1. Prioridades atuais", "## 2. Alertas e prazos")
   const alertsSection = section(markdown, "## 2. Alertas e prazos", "## 3. Projetos ativos")
@@ -156,5 +160,11 @@ export async function readOperationalPanel(): Promise<OperationalPanel> {
     confirmed: numberedList(clarityMarkdown, "## Decisões vigentes", "## Hipóteses — não tratar como decisão").slice(0, 4),
     pending: numberedList(clarityMarkdown, "## Cinco decisões que ainda pertencem a Gleide", "## Regra de autoridade das fontes").slice(0, 4),
   }
-  return { lastConsolidation, priorities, alerts, projects, commitments, peopleWaiting, waitingOn, decisions, direction, orbitalFronts, tasks, clients, clarity }
+  const isaUpdates = isaUpdatesMarkdown
+    .split("\n")
+    .filter((line) => line.startsWith("|") && !line.includes("---") && !line.includes("| Data |"))
+    .map((line) => line.split("|").slice(1, -1).map(cleanMarkdown))
+    .filter((cells) => cells.length >= 5)
+    .map(([date, origin, change, status, location]) => ({ date, origin, change, status, location }))
+  return { lastConsolidation, priorities, alerts, projects, commitments, peopleWaiting, waitingOn, decisions, direction, orbitalFronts, tasks, clients, clarity, isaUpdates }
 }

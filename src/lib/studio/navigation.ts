@@ -9,9 +9,13 @@ import {
   Handshake,
   LayoutDashboard,
   LibraryBig,
+  ListChecks,
   MessageSquareQuote,
+  Route,
+  Radar,
   Sparkles,
   Users,
+  Workflow,
 } from "lucide-react"
 
 export const osNavigation = [
@@ -19,8 +23,12 @@ export const osNavigation = [
   { href: "/os/projetos", label: "Projetos", description: "Frentes, tarefas e bloqueios", icon: FolderKanban },
   { href: "/os/clientes", label: "Clientes", description: "Relações e histórico", icon: Users },
   { href: "/os/comercial", label: "Comercial", description: "Oportunidades e propostas", icon: ChartNoAxesCombined },
+  { href: "/os/captacao", label: "Captação", description: "Sinais, pesquisa e próximos passos", icon: ListChecks },
   { href: "/os/repertorio", label: "Repertório", description: "Referências e curadoria", icon: LibraryBig },
+  { href: "/os/direcao", label: "Direção", description: "Missões e respostas", icon: Route },
   { href: "/os/decisoes", label: "Decisões", description: "Escolhas, critérios e pendências", icon: MessageSquareQuote },
+  { href: "/os/bussola", label: "Bússola", description: "Força das ideias e foco", icon: Radar },
+  { href: "/os/sistema", label: "Sistema", description: "Agentes, skills e playbooks", icon: Workflow },
   { href: "/os/inteligencia", label: "Memória e inteligência", description: "Captura e síntese do Studio", icon: Sparkles },
 ] as const
 export const platformAreas = [

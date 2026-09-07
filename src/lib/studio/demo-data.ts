@@ -27,7 +27,7 @@ export const demoOperationalPanel: OperationalPanel = {
     "Quem poderá acessar a operação interna?",
     "Qual conteúdo pertence ao portal de cada cliente?",
   ],
-  direction: ["Marca-mãe: Studio Gle Wolfran", "Plataforma interna: Studio OS", "Assinatura compacta: S—GW"],
+  direction: ["Marca-mãe: Studio Gle Wolfran", "Plataforma interna: Studio OS", "Assinatura provisória: somente o nome do Studio"],
   orbitalFronts: [
     { id: "alpha", title: "Studio OS", orbit: "alta", domain: "plataforma", why: "Experiência em validação", next: "Coletar feedback" },
     { id: "portal", title: "Portal-piloto", orbit: "movimento", domain: "clientes", why: "Próxima hipótese de valor", next: "Definir cliente-piloto" },
@@ -49,4 +49,7 @@ export const demoOperationalPanel: OperationalPanel = {
     confirmed: ["A nova superfície não utiliza um nome de assistente.", "O Preview usa apenas dados fictícios.", "Decisões permanecem humanas."],
     pending: ["Qual fluxo completo gera valor primeiro?", "Quais papéis de acesso serão necessários?", "Que partes devem migrar de arquivos para o banco?"],
   },
+  isaUpdates: [
+    { date: "Durante a Alpha", origin: "Teste demonstrativo", change: "O feedback relevante recebe um recibo de atualização.", status: "Refletido", location: "Memória e inteligência" },
+  ],
 }

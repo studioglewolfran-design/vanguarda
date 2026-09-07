@@ -56,3 +56,14 @@ nul
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local operating material, generated artifacts, and independently managed workspaces.
+# These remain available locally but must not be staged with the application source.
+/Inner Atlas/
+/.codex/
+/tmp/
+/output/
+/entregaveis/*
+!/entregaveis/README.md
+*.inspect.ndjson
+/transcricao-profissional-a*.log

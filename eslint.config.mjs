@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local artifacts and independent workspaces are not part of this app.
+    "Inner Atlas/**",
+    "tmp/**",
+    "output/**",
+    "entregaveis/**",
   ]),
 ]);
 
