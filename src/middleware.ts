@@ -3,6 +3,7 @@ import { updateSession } from "@/lib/supabase/middleware"
 import { createServerClient } from "@supabase/ssr"
 
 const protectedRoutes = ["/os"]
+const authenticatedRoutes = ["/workspace-setup"]
 
 export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/dashboard")) {
@@ -12,6 +13,9 @@ export async function middleware(request: NextRequest) {
   const isProtected = protectedRoutes.some((route) =>
     request.nextUrl.pathname.startsWith(route)
   )
+  const isAuthenticatedRoute = authenticatedRoutes.some((route) =>
+    request.nextUrl.pathname.startsWith(route)
+  )
 
   const hasSupabaseConfig = Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
@@ -19,7 +23,7 @@ export async function middleware(request: NextRequest) {
   )
 
   if (!hasSupabaseConfig) {
-    if (isProtected) {
+    if (isProtected || isAuthenticatedRoute) {
       const url = request.nextUrl.clone()
       url.pathname = "/login"
       url.searchParams.set("error", "configuration")
@@ -31,7 +35,7 @@ export async function middleware(request: NextRequest) {
 
   const response = await updateSession(request)
 
-  if (isProtected) {
+  if (isProtected || isAuthenticatedRoute) {
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 
 import { OsShell } from "@/components/studio/os-shell"
 import { createClient } from "@/lib/supabase/server"
+import { getCurrentWorkspace } from "@/lib/supabase/queries/workspaces"
 
 export const dynamic = "force-dynamic"
 
@@ -21,6 +22,11 @@ export default async function StudioOsLayout({ children }: { children: React.Rea
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) redirect("/login?next=/os")
+
+    if (process.env.STUDIO_OS_DATA_MODE === "supabase") {
+      const workspace = await getCurrentWorkspace()
+      if (!workspace) redirect("/workspace-setup?next=/os")
+    }
   }
 
   return <OsShell>{children}</OsShell>

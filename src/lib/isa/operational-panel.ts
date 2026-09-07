@@ -4,6 +4,8 @@ import { readFile } from "node:fs/promises"
 import path from "node:path"
 
 import { demoOperationalPanel } from "@/lib/studio/demo-data"
+import { getSecureStudioRecord } from "@/lib/supabase/queries/workspaces"
+import { z } from "zod"
 
 export type OperationalAlert = { title: string; project: string; deadline: string; status: string }
 export type OperationalProject = { name: string; objective: string; context: string; tasks: string[]; blocker: string; status: string }
@@ -53,6 +55,23 @@ export type OperationalPanel = {
   isaUpdates: IsaUpdate[]
 }
 
+const operationalPanelSchema = z.object({
+  lastConsolidation: z.string(),
+  priorities: z.array(z.string()),
+  alerts: z.array(z.object({ title: z.string(), project: z.string(), deadline: z.string(), status: z.string() })),
+  projects: z.array(z.object({ name: z.string(), objective: z.string(), context: z.string(), tasks: z.array(z.string()), blocker: z.string(), status: z.string() })),
+  commitments: z.array(z.string()),
+  peopleWaiting: z.array(z.string()),
+  waitingOn: z.array(z.string()),
+  decisions: z.array(z.string()),
+  direction: z.array(z.string()),
+  orbitalFronts: z.array(z.object({ id: z.string(), title: z.string(), orbit: z.enum(["alta", "movimento", "incubacao"]), domain: z.string(), why: z.string(), next: z.string() })),
+  tasks: z.array(z.object({ priority: z.string(), action: z.string(), project: z.string(), owner: z.string(), deadline: z.string(), status: z.string() })),
+  clients: z.array(z.object({ id: z.string(), name: z.string(), relationship: z.string(), status: z.string(), proposals: z.string(), contracts: z.string(), briefings: z.string(), conversations: z.string(), source: z.string(), next: z.string(), alert: z.string() })),
+  clarity: z.object({ summary: z.string(), stable: z.array(z.string()), confirmed: z.array(z.string()), pending: z.array(z.string()) }),
+  isaUpdates: z.array(z.object({ date: z.string(), origin: z.string(), change: z.string(), status: z.string(), location: z.string() })),
+})
+
 const PANEL_PATH = path.join(process.cwd(), "docs", "PAINEL-OPERACIONAL.md")
 const CONTEXT_PATH = path.join(process.cwd(), "docs", "CONTEXTO-OPERACIONAL-04-09-2026.md")
 const ORBITAL_PATH = path.join(process.cwd(), "docs", "CAMPO-ORBITAL.md")
@@ -88,6 +107,12 @@ function numberedList(markdown: string, heading: string, nextHeading: string) {
 export async function readOperationalPanel(): Promise<OperationalPanel> {
   const dataMode = process.env.STUDIO_OS_DATA_MODE ?? (process.env.VERCEL ? "demo" : "files")
   if (dataMode === "demo") return demoOperationalPanel
+  if (dataMode === "supabase") {
+    const payload = await getSecureStudioRecord<unknown>("operational_panel", "default")
+    const parsed = operationalPanelSchema.safeParse(payload)
+    if (!parsed.success) throw new Error("secure_operational_panel_missing_or_invalid")
+    return parsed.data
+  }
 
   const [markdown, context, orbital, clientsMarkdown, clarityMarkdown, isaUpdatesMarkdown] = await Promise.all([
     readFile(PANEL_PATH, "utf8"),

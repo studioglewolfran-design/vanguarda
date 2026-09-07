@@ -38,12 +38,132 @@ export type Database = {
         }
         Relationships: []
       }
+      studio_workspaces: {
+        Row: {
+          id: string
+          name: string
+          created_by: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          created_by: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          created_by?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      studio_workspace_members: {
+        Row: {
+          workspace_id: string
+          user_id: string
+          role: "owner" | "editor" | "viewer"
+          created_at: string
+        }
+        Insert: {
+          workspace_id: string
+          user_id: string
+          role?: "owner" | "editor" | "viewer"
+          created_at?: string
+        }
+        Update: {
+          workspace_id?: string
+          user_id?: string
+          role?: "owner" | "editor" | "viewer"
+          created_at?: string
+        }
+        Relationships: []
+      }
+      studio_records: {
+        Row: {
+          id: string
+          workspace_id: string
+          record_type: string
+          record_key: string
+          payload: Json
+          source_label: string | null
+          created_by: string
+          updated_by: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          workspace_id: string
+          record_type: string
+          record_key: string
+          payload: Json
+          source_label?: string | null
+          created_by?: string
+          updated_by?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          workspace_id?: string
+          record_type?: string
+          record_key?: string
+          payload?: Json
+          source_label?: string | null
+          created_by?: string
+          updated_by?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      studio_audit_events: {
+        Row: {
+          id: string
+          workspace_id: string
+          actor_id: string | null
+          action: "insert" | "update" | "delete"
+          record_id: string | null
+          record_type: string | null
+          metadata: Json
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          workspace_id: string
+          actor_id?: string | null
+          action: "insert" | "update" | "delete"
+          record_id?: string | null
+          record_type?: string | null
+          metadata?: Json
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          workspace_id?: string
+          actor_id?: string | null
+          action?: "insert" | "update" | "delete"
+          record_id?: string | null
+          record_type?: string | null
+          metadata?: Json
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      provision_my_studio_workspace: {
+        Args: { workspace_name?: string }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never

@@ -2,6 +2,9 @@ import "server-only"
 
 import { readFile } from "node:fs/promises"
 import path from "node:path"
+import { z } from "zod"
+
+import { getSecureStudioRecord } from "@/lib/supabase/queries/workspaces"
 
 export type LeadPipelineStage = {
   id: string
@@ -35,6 +38,12 @@ const stages: LeadPipelineStage[] = [
   { id: "encaminhamento", label: "Encaminhamento", automation: "Sugere o menor próximo passo coerente.", humanAction: "Aprovar experimento, proposta ou encerramento." },
 ]
 
+const leadPipelineSchema = z.object({
+  isDemo: z.boolean(),
+  stages: z.array(z.object({ id: z.string(), label: z.string(), automation: z.string(), humanAction: z.string() })),
+  lead: z.object({ title: z.string(), state: z.string(), origin: z.string(), facts: z.array(z.string()), nextSteps: z.array(z.string()) }).nullable(),
+})
+
 function clean(value: string) {
   return value.replace(/\*\*/g, "").replace(/`/g, "").replace(/\s+/g, " ").trim()
 }
@@ -49,6 +58,12 @@ function section(markdown: string, heading: string) {
 export async function readLeadPipeline(): Promise<LeadPipeline> {
   const dataMode = process.env.STUDIO_OS_DATA_MODE ?? (process.env.VERCEL ? "demo" : "files")
   if (dataMode === "demo") return { isDemo: true, stages, lead: null }
+  if (dataMode === "supabase") {
+    const payload = await getSecureStudioRecord<unknown>("lead_pipeline", "default")
+    const parsed = leadPipelineSchema.safeParse(payload)
+    if (!parsed.success) return { isDemo: false, stages, lead: null }
+    return parsed.data
+  }
 
   try {
     const markdown = await readFile(LEAD_PATH, "utf8")
