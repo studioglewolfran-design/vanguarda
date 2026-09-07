@@ -14,6 +14,11 @@ export default async function WorkspaceSetupPage({ searchParams }: { searchParam
   const hasSupabaseConfig = Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   )
+  const localAuthDisabled =
+    process.env.STUDIO_OS_AUTH_MODE === "disabled" &&
+    process.env.NODE_ENV !== "production"
+
+  if (localAuthDisabled) redirect("/os")
 
   if (!hasSupabaseConfig) {
     return <main className="grid min-h-screen place-items-center p-6"><p>O ambiente privado ainda não foi configurado.</p></main>

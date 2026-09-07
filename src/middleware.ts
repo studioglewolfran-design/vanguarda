@@ -21,6 +21,13 @@ export async function middleware(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   )
+  const localAuthDisabled =
+    process.env.STUDIO_OS_AUTH_MODE === "disabled" &&
+    process.env.NODE_ENV !== "production"
+
+  if (localAuthDisabled) {
+    return NextResponse.next()
+  }
 
   if (!hasSupabaseConfig) {
     if (isProtected || isAuthenticatedRoute) {

@@ -17,8 +17,11 @@ export default async function StudioOsLayout({ children }: { children: React.Rea
   const hasSupabaseConfig = Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   )
+  const localAuthDisabled =
+    process.env.STUDIO_OS_AUTH_MODE === "disabled" &&
+    process.env.NODE_ENV !== "production"
 
-  if (hasSupabaseConfig) {
+  if (hasSupabaseConfig && !localAuthDisabled) {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) redirect("/login?next=/os")
