@@ -38,14 +38,14 @@ export default function ContactPage() {
       <div className="mx-auto max-w-[var(--content-width)] px-5 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#8A8588]/40 py-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[#526A7A]">
           <span>Studio Gle Wolfran</span>
-          <span>Contato</span>
+          <span>Ariquemes · Rondônia</span>
         </div>
       </div>
 
       <article className="mx-auto max-w-[var(--content-width)] px-5 pb-24 sm:px-8">
         <header className="grid gap-8 border-b border-[#8A8588]/55 py-14 sm:py-20 lg:grid-cols-[minmax(0,760px)_180px] lg:justify-between lg:gap-16">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">Contato · Studio Gle Wolfran</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">Contato</p>
             <h1 className="mt-5 max-w-3xl font-sans text-4xl font-medium leading-[0.96] tracking-[-0.06em] sm:text-6xl">Vamos conversar.</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#596862]">Escolha o canal que fizer mais sentido para você.</p>
           </div>
@@ -58,9 +58,9 @@ export default function ContactPage() {
         <div className="grid gap-16 lg:grid-cols-[minmax(0,760px)_180px] lg:justify-between lg:gap-16">
           <section aria-labelledby="canais" className="py-12 sm:py-16">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">Canais</p>
-            <h2 id="canais" className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">Por onde você prefere chegar?</h2>
+            <h2 id="canais" className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">Canais de contato</h2>
 
-            <div className="mt-8 border-y border-[#8A8588]/55">
+            <div className="mt-8 border-y border-[#8A8588]/55 bg-[#DDE0E2]">
               {contactLinks.map(({ label, value, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -81,10 +81,10 @@ export default function ContactPage() {
             </div>
           </section>
 
-          <aside className="border-t border-[#8A8588]/40 py-12 text-[#493735] sm:py-16 lg:border-t-0 lg:border-l lg:pl-8">
-            <MapPin className="size-5 text-[#596862]" aria-hidden="true" />
-            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-[#596862]">Localização</p>
-            <address className="mt-4 not-italic text-base leading-7">
+          <aside className="border-t border-[#4B354D] bg-[#4B354D] py-12 pl-6 text-[#F3F3F2] sm:py-16 lg:border-t-0 lg:border-l-0 lg:pl-8">
+            <MapPin className="size-5 text-[#F4C3CC]" aria-hidden="true" />
+            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-[#DDE0E2]">Localização</p>
+            <address className="mt-4 not-italic text-base leading-7 text-[#F3F3F2]">
               Av. Canaã, 2689<br />
               Setor 3<br />
               Ariquemes — RO<br />

@@ -16,14 +16,21 @@ const eventSteps = [
   ["04", "Aprender", "Observar o que funciona e o que pode ser aprimorado nas próximas experiências."],
 ] as const
 
+const projectPeople = [
+  ["Luan Nogueira", "Marca a ser ativada", "A marca que será colocada em relação com as pessoas e com a experiência."],
+  ["Fine Hair", "Marca, prestador e espaço", "Marca a ser ativada, prestador de serviços de cabelos e make e espaço onde a ativação vai acontecer."],
+  ["Gleide", "Estrategista / designer e gestora", "Direção da experiência, organização do desenho e gestão da ativação."],
+  ["Possíveis colaboradores", "A confirmar conforme o desenho", "Gráfica, buffet, filmmaker profissional e outros parceiros que possam ser necessários."],
+] as const
+
 const alignmentQuestions = [
   [
     "Quando você fala em plataforma, qual é exatamente o produto que está sendo construído agora?",
     "Preciso distinguir o que já existe, o que é hipótese e o que depende da validação do piloto.",
   ],
   [
-    "Qual entrega você imagina assumir na ativação do dia 25, se houver uma participação sua no evento?",
-    "A ferramenta e a ativação são frentes diferentes. Para falar de ganho na ativação, preciso conhecer o escopo real da sua contribuição nela.",
+    "Em quais partes dos próximos eventos você acredita que pode colaborar?",
+    "Não estou definindo agora a sua atuação no dia 25. Quero entender como você se enxerga contribuindo em experiências futuras e que tipo de entrega gostaria de desenvolver.",
   ],
   [
     "O que você espera que eu pesquise, teste e valide para a plataforma — e por quanto tempo?",
@@ -60,16 +67,12 @@ export default function AlignmentExperiencesPage() {
       </div>
 
       <article className="mx-auto max-w-[var(--content-width)] px-5 pb-24 sm:px-8">
-        <header className="grid gap-8 border-b border-[#8A8588]/55 py-14 sm:py-20 lg:grid-cols-[minmax(0,760px)_180px] lg:justify-between lg:gap-16">
+        <header className="border-b border-[#8A8588]/55 py-14 sm:py-20">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">Experiências · plataforma · parceria</p>
             <h1 className="mt-5 max-w-3xl font-sans text-4xl font-medium leading-[0.96] tracking-[-0.06em] sm:text-6xl">O que eu estou enxergando</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#596862]">Um registro da minha leitura sobre a experiência de 25/09, o serviço de ativação de marca e o sistema para gestores de eventos.</p>
           </div>
-          <aside className="border-l-2 border-[#596862] pl-5 text-sm leading-6 text-[#596862] lg:mt-2">
-            <p className="font-semibold text-[#151419]">Este documento não é uma proposta comercial.</p>
-            <p className="mt-2">É uma base de entendimento para que a conversa e os contratos partam de uma visão explicitada.</p>
-          </aside>
         </header>
 
         <div className="grid gap-16 lg:grid-cols-[180px_minmax(0,760px)] lg:gap-16">
@@ -81,6 +84,10 @@ export default function AlignmentExperiencesPage() {
               <Link href="#25-setembro" className="transition hover:text-[#512334]">03 · 25/09</Link>
               <Link href="#troca" className="transition hover:text-[#512334]">04 · Troca</Link>
               <Link href="#perguntas" className="transition hover:text-[#512334]">06 · Perguntas</Link>
+            </div>
+            <div className="mt-10 border-l-2 border-[#512334] bg-[#DDE0E2] px-4 py-4 text-sm leading-6 text-[#493735]">
+              <p className="font-semibold text-[#512334]">Este documento não é uma proposta comercial.</p>
+              <p className="mt-2">É uma base de entendimento para que a conversa e os contratos partam de uma visão explicitada.</p>
             </div>
           </nav>
 
@@ -142,6 +149,20 @@ export default function AlignmentExperiencesPage() {
                 ))}
               </ol>
               <p className="mt-6 max-w-2xl text-sm leading-6 text-[#596862]">Maria Clara participa sem cobrança nesta primeira experiência para conhecer o formato. Essa condição é pontual e não define o preço do serviço ou dos próximos projetos.</p>
+
+              <div className="mt-10 border-t border-[#8A8588]/55 pt-8">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">Envolvidos no projeto</p>
+                <h3 className="mt-4 max-w-2xl font-sans text-2xl font-medium leading-tight tracking-[-0.04em] sm:text-3xl">Quem dá forma a esta primeira experiência.</h3>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {projectPeople.map(([name, role, detail]) => (
+                    <article key={name} className="border border-[#8A8588]/45 bg-[#DDE0E2]/60 p-5">
+                      <h4 className="font-sans text-xl font-medium tracking-[-0.03em]">{name}</h4>
+                      <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#4B354D]">{role}</p>
+                      <p className="mt-3 text-sm leading-6 text-[#596862]">{detail}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
             </section>
 
             <section id="troca" className="border-b border-[#8A8588]/40 py-12 sm:py-16">
