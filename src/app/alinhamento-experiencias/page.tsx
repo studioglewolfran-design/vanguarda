@@ -191,7 +191,7 @@ export default function AlignmentExperiencesPage() {
       <footer className="border-t border-[#8A8588]/40 bg-[#DDE0E2] px-5 py-6 sm:px-8">
         <div className="mx-auto flex max-w-[var(--content-width)] flex-wrap items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#596862]">
           <Link href="/" className="text-[#151419] transition hover:text-[#512334]">Studio Gle Wolfran</Link>
-          <Link href="/links" className="text-[#512334] transition hover:text-[#4B354D]">Contato</Link>
+          <Link href="/contato" className="text-[#512334] transition hover:text-[#4B354D]">Contato</Link>
           <span>Ariquemes · Rondônia · 2026</span>
         </div>
       </footer>
