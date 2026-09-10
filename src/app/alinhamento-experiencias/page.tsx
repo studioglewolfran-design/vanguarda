@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { PublicHeader } from "@/components/studio/public-header"
-
 export const metadata: Metadata = {
   title: "Alinhamento · experiências e plataforma",
   description:
@@ -57,8 +55,6 @@ const alignmentQuestions = [
 export default function AlignmentExperiencesPage() {
   return (
     <main className="min-h-screen bg-[#F3F3F2] text-[#151419]">
-      <PublicHeader />
-
       <div className="mx-auto max-w-[var(--content-width)] px-5 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#8A8588]/40 py-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[#526A7A]">
           <span>Documento de alinhamento</span>
