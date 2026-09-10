@@ -81,10 +81,6 @@ export default function AlignmentExperiencesPage() {
               <Link href="#troca" className="transition hover:text-[#512334]">04 · Troca</Link>
               <Link href="#perguntas" className="transition hover:text-[#512334]">06 · Perguntas</Link>
             </div>
-            <div className="mt-10 border-l-2 border-[#512334] bg-[#DDE0E2] px-4 py-4 text-sm leading-6 text-[#493735]">
-              <p className="font-semibold text-[#512334]">Este documento não é uma proposta comercial.</p>
-              <p className="mt-2">É uma base de entendimento para que a conversa e os contratos partam de uma visão explicitada.</p>
-            </div>
           </nav>
 
           <div>
@@ -199,6 +195,10 @@ export default function AlignmentExperiencesPage() {
                 <span>Versão 0.2</span>
                 <span>·</span>
                 <span>Studio Gle Wolfran</span>
+              </div>
+              <div className="mt-10 border-l-4 border-[#512334] bg-[#DDE0E2] px-6 py-5 text-sm leading-6 text-[#493735] sm:px-8">
+                <p className="font-semibold text-[#512334]">Este documento não é uma proposta comercial.</p>
+                <p className="mt-2">É uma base de entendimento para que a conversa e os contratos partam de uma visão explicitada.</p>
               </div>
             </section>
           </div>
