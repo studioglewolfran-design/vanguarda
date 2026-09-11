@@ -1,214 +1,210 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
+import { AlignmentNotes } from "@/components/studio/alignment-notes"
+
 export const metadata: Metadata = {
-  title: "Alinhamento · experiências e plataforma",
+  title: "Acordo de trabalho · experiências e plataforma",
   description:
-    "Documento de alinhamento sobre a experiência de 25/09, o serviço de ativação de marca e a plataforma para gestores de eventos.",
+    "Registro de trabalho entre Gleide Wolfran e Bruno Lujan para a experiência-piloto de 25/09 e a validação da plataforma.",
 }
 
-const eventSteps = [
-  ["01", "Desenhar", "Dar forma ao objetivo, à jornada, aos papéis, ao ritmo e ao padrão de qualidade."],
-  ["02", "Apresentar", "Tornar visível para participantes e colaboradores o que está sendo proposto."],
-  ["03", "Formalizar", "Registrar entregas, custos, responsabilidades, créditos e uso de imagem."],
-  ["04", "Aprender", "Observar o que funciona e o que pode ser aprimorado nas próximas experiências."],
+const pilotPeople = [
+  ["Gleide Wolfran", "Direção e gestão", "Vende, dirige e define o escopo da ativação pelo Studio Gle Wolfran."],
+  ["Bruno Lujan", "Formalização, à distância", "Organiza ficha, contratos, termos de imagem, créditos e checklist do piloto."],
+  ["Maria Clara", "Filmmaker", "Participa sem cobrança no primeiro caso para conhecer o formato."],
+  ["Fine Hair", "Marca, serviço e espaço", "Marca a ser ativada, prestadora de cabelos e make e espaço da experiência."],
+  ["Luan Nogueira", "Marca a ser ativada", "Marca colocada em relação com participantes, serviços e experiência."],
+  ["Demais colaboradores", "Conforme escopo", "Fotografia, buffet, gráfica e outros parceiros entram com entrega e valor definidos."],
 ] as const
 
-const projectPeople = [
-  ["Luan Nogueira", "Marca a ser ativada", "A marca que será colocada em relação com as pessoas e com a experiência."],
-  ["Fine Hair", "Marca, prestador e espaço", "Marca a ser ativada, prestador de serviços de cabelos e make e espaço onde a ativação vai acontecer."],
-  ["Gleide", "Estrategista / designer e gestora", "Direção da experiência, organização do desenho e gestão da ativação."],
-  ["Possíveis colaboradores", "A confirmar conforme o desenho", "Gráfica, buffet, filmmaker profissional e outros parceiros que possam ser necessários."],
+const timeline = [
+  ["10.09", "Alinhamento de papéis", "A resposta escrita de Bruno consolida a separação entre ativação do Studio e plataforma técnica."],
+  ["Até 16.09", "Ficha e contratos", "Gleide e Bruno preenchem a ficha do evento, confirmam entregas e preparam os documentos necessários."],
+  ["25.09", "Experiência-piloto", "A ativação de Luan Nogueira e Fine Hair acontece como caso real de trabalho e aprendizagem."],
+  ["Após cada experiência", "Leitura de validação", "Conversa de até 30 minutos para registrar o que falta, o que sobra e o que deve virar sistema."],
+  ["Até 02.10", "Preço da formalização", "Bruno apresenta sua proposta de valor para entregas futuras, após medir o piloto."],
+  ["31.12 ou 3 experiências", "Revisão da parceria", "Fim previsto do primeiro ciclo de validação. As partes decidem se e como a colaboração continua."],
 ] as const
 
-const alignmentQuestions = [
-  [
-    "Quando você fala em plataforma, qual é exatamente o produto que está sendo construído agora?",
-    "Preciso distinguir o que já existe, o que é hipótese e o que depende da validação do piloto.",
-  ],
-  [
-    "Em quais partes dos próximos eventos você acredita que pode colaborar?",
-    "Não estou definindo agora a sua atuação no dia 25. Quero entender como você se enxerga contribuindo em experiências futuras e que tipo de entrega gostaria de desenvolver.",
-  ],
-  [
-    "O que você espera que eu pesquise, teste e valide para a plataforma — e por quanto tempo?",
-    "Meu acesso ao contexto, aos fornecedores e a outros gestores é parte importante do piloto e precisa ter contorno.",
-  ],
-  [
-    "Como ficam autoria, propriedade, uso do repertório e aproveitamento dos aprendizados do meu negócio?",
-    "Quero colaborar com abertura sem transformar minhas ideias, contatos ou método em um recurso sem limite definido.",
-  ],
-  [
-    "Como funcionam, na prática, o uso gratuito e a comissão por indicação?",
-    "Precisamos definir base de cálculo, prazo, momento do pagamento, continuidade e o que acontece se a parceria mudar.",
-  ],
-  [
-    "Como separamos um cliente que compra a plataforma de um cliente que contrata o serviço de experiência do Studio?",
-    "Essa separação evita que uma indicação, uma venda de sistema e uma ativação sejam tratadas como a mesma relação comercial.",
-  ],
-  [
-    "Quais decisões precisam ser tomadas antes do evento e quais podem ficar para depois do piloto?",
-    "Nem toda premissa precisa virar compromisso agora, mas o que for compromisso precisa estar claro para todos.",
-  ],
+const pendingDecisions = [
+  ["Preço da experiência", "Definir a ordem de grandeza do serviço do Studio a partir da segunda experiência."],
+  ["Remuneração de Maria", "Aguardar o valor para os próximos projetos e encaixá-lo no orçamento de cada caso."],
+  ["Escopo do sistema", "Validar o que de fato foi útil no dia 25 antes de transformar a operação em produto."],
+  ["Alquimia", "Construir uma divisão própria por escopo, execução, responsabilidade, custos e margem."],
 ] as const
 
 export default function AlignmentExperiencesPage() {
   return (
-    <main className="min-h-screen bg-[#F3F3F2] text-[#151419]">
-      <div className="mx-auto max-w-[var(--content-width)] px-5 sm:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#8A8588]/40 py-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[#526A7A]">
-          <span>Documento de alinhamento</span>
-          <span>10.09.2026 · v0.2 · em elaboração</span>
-        </div>
-      </div>
+    <main className="min-h-screen overflow-x-hidden bg-[#F3F3F2] text-[#151419]">
+      <div aria-hidden="true" className="h-1.5 bg-gradient-to-r from-[#512334] via-[#4B354D] to-[#526A7A]" />
 
       <article className="mx-auto max-w-[var(--content-width)] px-5 pb-24 sm:px-8">
-        <header className="border-b border-[#8A8588]/55 py-14 sm:py-20">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#8A8588]/45 py-4 font-mono text-xs uppercase tracking-[0.14em] text-[#526A7A]">
+          <span>Acordo de trabalho · versão 0.3</span>
+          <span>10.09.2026 · em consolidação</span>
+        </div>
+
+        <header className="grid gap-7 border-b border-[#8A8588]/55 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-end lg:gap-12">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">Experiências · plataforma · parceria</p>
-            <h1 className="mt-5 max-w-3xl font-sans text-4xl font-medium leading-[0.96] tracking-[-0.06em] sm:text-6xl">O que eu estou enxergando</h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#596862]">Um registro da minha leitura sobre a experiência de 25/09, o serviço de ativação de marca e o sistema para gestores de eventos.</p>
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#512334]">Gleide Wolfran · Studio Gle Wolfran · Bruno Lujan</p>
+            <h1 className="mt-5 max-w-4xl font-sans text-4xl font-medium leading-[0.94] tracking-[-0.06em] sm:text-6xl">Experiências e plataforma: acordo de trabalho em consolidação.</h1>
           </div>
+          <p className="border-l-2 border-[#596862] pl-5 text-base leading-7 text-[#596862]">Base de entendimento para o piloto de 25/09, os contratos do projeto e o primeiro ciclo de validação da plataforma.</p>
         </header>
 
-        <div className="grid gap-16 lg:grid-cols-[180px_minmax(0,760px)] lg:gap-16">
-          <nav aria-label="Nesta página" className="pt-10 lg:sticky lg:top-8 lg:self-start">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8A8588]">Nesta página</p>
+        <section aria-label="Atualização desta versão" className="my-8 grid overflow-hidden border border-[#512334]/35 bg-[#512334] text-[#F3F3F2] sm:grid-cols-[190px_1fr]">
+          <div className="bg-[#493735] px-5 py-5 sm:px-6">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-[#F4C3CC]">Atualização</p>
+            <p className="mt-3 font-sans text-2xl font-medium tracking-[-0.04em]">O que mudou nesta versão.</p>
+          </div>
+          <div className="px-5 py-5 sm:px-7">
+            <p className="text-base leading-7 text-[#DDE0E2]">A colaboração de Bruno foi delimitada como uma entrega específica de formalização, e não como participação automática no faturamento da ativação. Também foram registrados os limites de validação, a proteção de método, repertório, contatos e dados, e a lógica de uso gratuito e comissão da plataforma.</p>
+            <p className="mt-4 border-t border-[#F3F3F2]/20 pt-4 font-mono text-xs leading-6 uppercase tracking-[0.1em] text-[#F4C3CC]">Fonte: resposta escrita de Bruno Lujan ao alinhamento do Studio, documento “Bruno e Gle — parceria e projetos”, recebido em 10.09.2026.</p>
+          </div>
+        </section>
+
+        <div className="grid gap-14 lg:grid-cols-[190px_minmax(0,760px)] lg:gap-16">
+          <nav aria-label="Nesta página" className="pt-2 lg:sticky lg:top-8 lg:self-start">
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#8A8588]">Nesta página</p>
             <div className="mt-4 grid gap-2 text-sm text-[#596862]">
-              <Link href="#contexto" className="transition hover:text-[#512334]">01 · Contexto</Link>
+              <Link href="#acordo" className="transition hover:text-[#512334]">01 · Acordo</Link>
               <Link href="#frentes" className="transition hover:text-[#512334]">02 · Frentes</Link>
-              <Link href="#25-setembro" className="transition hover:text-[#512334]">03 · 25/09</Link>
-              <Link href="#troca" className="transition hover:text-[#512334]">04 · Troca</Link>
-              <Link href="#perguntas" className="transition hover:text-[#512334]">06 · Perguntas</Link>
+              <Link href="#piloto" className="transition hover:text-[#512334]">03 · Piloto</Link>
+              <Link href="#cronograma" className="transition hover:text-[#512334]">04 · Cronograma</Link>
+              <Link href="#pendencias" className="transition hover:text-[#512334]">05 · Pendências</Link>
+              <Link href="#anotacoes" className="transition hover:text-[#512334]">06 · Anotações</Link>
             </div>
           </nav>
 
           <div>
-            <section id="contexto" className="border-b border-[#8A8588]/40 py-12 sm:py-16">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">01 · Contexto</p>
-              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">Antes de dividir qualquer coisa, precisamos nomear o que está sendo construído.</h2>
+            <section id="acordo" className="border-b border-[#8A8588]/45 py-10 sm:py-14">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#512334]">01 · Partes e propósito</p>
+              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">O Studio e Bruno Lujan colaboram em frentes distintas, com responsabilidades próprias.</h2>
               <div className="mt-6 max-w-2xl space-y-5 text-base leading-7 text-[#2C2D33]">
-                <p>Nas nossas conversas, a palavra “evento” foi carregando sentidos diferentes. Falamos sobre organizar fornecedores, criar experiências, atender empresas, construir uma plataforma e dividir ganhos — às vezes dentro da mesma conversa e de forma casual.</p>
-                <p>Como esses alinhamentos não foram gravados nem reunidos em um documento único, é possível que uma ideia tenha parecido outra coisa dependendo do ponto de vista de quem ouviu. Este registro existe para tornar explícita a minha leitura antes de transformá-la em parceria, preço, contrato ou requisito de sistema.</p>
-                <p>Quando eu falo em criar experiências, não estou falando apenas de executar um evento. Estou falando de compreender o momento de uma empresa, encontrar uma intenção, pesquisar referências, fazer escolhas, reunir pessoas e construir uma jornada que faça sentido para quem participa e para a marca que está se apresentando.</p>
-                <p className="border-l-2 border-[#512334] pl-5 font-medium text-[#151419]">O evento é o lugar onde essa visão se manifesta. O sistema é uma possível ferramenta de apoio. As duas coisas não são o mesmo produto.</p>
+                <p>Este documento consolida o entendimento de trabalho entre Gleide Wolfran, pelo Studio Gle Wolfran, e Bruno Lujan. Ele orienta a experiência-piloto de 25/09 e o primeiro ciclo de validação de uma plataforma para gestores de eventos.</p>
+                <p>Ele não substitui os contratos individuais de cada projeto. Sempre que houver cliente, colaborador, custo, uso de imagem ou entrega específica, o escopo correspondente deverá ser registrado antes da execução.</p>
+              </div>
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                <div className="border-l-4 border-[#512334] bg-[#DDE0E2] p-5">
+                  <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#512334]">Princípio de troca</p>
+                  <p className="mt-3 text-base leading-7 text-[#2C2D33]">Cada pessoa recebe pelo que assume e entrega. Não há percentual automático por proximidade, origem da ideia ou uso da mesma ferramenta.</p>
+                </div>
+                <div className="border-l-4 border-[#526A7A] bg-[#E7ECEB] p-5">
+                  <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#526A7A]">Limite de decisão</p>
+                  <p className="mt-3 text-base leading-7 text-[#2C2D33]">Gleide preserva a direção, o julgamento, a relação com o cliente e a decisão final nas ativações do Studio.</p>
+                </div>
               </div>
             </section>
 
-            <section id="frentes" className="border-b border-[#8A8588]/40 py-12 sm:py-16">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">02 · Frentes</p>
-              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">Eu enxergo duas frentes que podem se relacionar, mas não devem ser confundidas.</h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-[#596862]">Abaixo está a minha visão de cada projeto. Não é ainda a descrição das tarefas de cada pessoa nem um acordo de divisão financeira.</p>
-
-              <div className="mt-8 grid gap-4 lg:grid-cols-2">
-                <article className="flex h-full flex-col border border-[#512334] bg-[#512334] p-6 text-[#F3F3F2] sm:p-7">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#F4C3CC]">Frente 01 · Serviço do Studio</p>
-                  <h3 className="mt-6 font-sans text-2xl font-medium leading-tight tracking-[-0.04em]">Design e gestão da ativação de marca</h3>
-                  <div className="mt-6 space-y-5 border-t border-[#F3F3F2]/20 pt-5 text-base leading-7 text-[#DDE0E2]">
-                    <p>Eu visualizo esta frente como uma oferta própria de Gle Wolfran/Studio. Ela nasce da minha capacidade de ler uma marca e o seu momento, pesquisar possibilidades, selecionar referências e transformar tudo isso em uma experiência com intenção.</p>
-                    <p>Não é uma fórmula pronta para produzir eventos iguais. Cada ativação pode pedir uma narrativa, um ritmo, uma atmosfera, parceiros e formas de participação diferentes. O que permanece é o cuidado com a coerência entre a ideia, os pontos de contato, as pessoas envolvidas e a percepção final.</p>
-                    <p>Também visualizo uma responsabilidade de direção: sustentar o padrão de qualidade, cuidar das escolhas e acompanhar a experiência até que ela faça sentido no mundo real. Conforme o escopo, essa oferta pode envolver outros colaboradores, conteúdo, produção e gestão.</p>
+            <section id="frentes" className="border-b border-[#8A8588]/45 py-10 sm:py-14">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#512334]">02 · Frentes da colaboração</p>
+              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">Uma experiência do Studio e uma plataforma em validação.</h2>
+              <div className="mt-7 grid gap-4 lg:grid-cols-2">
+                <article className="border border-[#151419] bg-[#151419] p-6 text-[#F3F3F2] sm:p-7">
+                  <p className="font-mono text-xs uppercase tracking-[0.15em] text-[#F4C3CC]">Frente 01 · Studio Gle Wolfran</p>
+                  <h3 className="mt-5 font-sans text-2xl font-medium leading-tight tracking-[-0.04em]">Design e gestão da ativação</h3>
+                  <div className="mt-5 space-y-4 border-t border-[#F3F3F2]/20 pt-5 text-base leading-7 text-[#DDE0E2]">
+                    <p>O cliente contrata o Studio. Gleide vende, dirige e define o escopo da experiência, incluindo direção estratégica, jornada, curadoria, padrão de qualidade e gestão quando contratada.</p>
+                    <p>Bruno só entra como colaborador do Studio quando houver uma entrega específica acordada, com escopo e preço próprios. Não há participação automática no faturamento da ativação.</p>
                   </div>
                 </article>
 
-                <article className="flex h-full flex-col border border-[#493735]/35 bg-[#DDE0E2] p-6 text-[#493735] sm:p-7">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#4B354D]">Frente 02 · Produto em construção</p>
-                  <h3 className="mt-6 font-sans text-2xl font-medium leading-tight tracking-[-0.04em]">Sistema para gestores de eventos</h3>
-                  <div className="mt-6 space-y-5 border-t border-[#493735]/20 pt-5 text-base leading-7 text-[#2C2D33]">
-                    <p>Eu visualizo esta frente como um produto separado: uma ferramenta para organizar a parte operacional de quem já precisa conduzir eventos e relações com clientes, fornecedores e colaboradores.</p>
-                    <p>O valor que enxergo está em tirar informações importantes da dispersão — escopos, contratos, entregas, custos, prazos e responsabilidades — e colocá-las em uma estrutura que ajude o gestor a acompanhar o trabalho com mais clareza.</p>
-                    <p>Esse produto pode nascer a partir do meu próprio negócio como primeiro ambiente de observação e validação. Eu tenho contato com situações, fornecedores e profissionais que podem revelar necessidades reais. Mas o sistema precisa continuar sendo tratado como produto próprio, com limites claros sobre o que está sendo aprendido, usado e comercializado.</p>
+                <article className="border border-[#526A7A]/55 bg-[#526A7A] p-6 text-[#F3F3F2] sm:p-7">
+                  <p className="font-mono text-xs uppercase tracking-[0.15em] text-[#DDE0E2]">Frente 02 · Produto em validação</p>
+                  <h3 className="mt-5 font-sans text-2xl font-medium leading-tight tracking-[-0.04em]">Sistema para gestores de eventos</h3>
+                  <div className="mt-5 space-y-4 border-t border-[#F3F3F2]/25 pt-5 text-base leading-7 text-[#F3F3F2]">
+                    <p>Bruno constrói e mantém o código. Gleide testa o uso nas próprias experiências e participa de conversas de aprendizagem após cada caso, sem obrigação de pesquisa ou apresentação de contatos.</p>
+                    <p>O ciclo inicial dura três experiências, contando o dia 25, ou até 31/12/2026. O que for útil pode virar sistema; o que não for útil não precisa continuar.</p>
                   </div>
                 </article>
               </div>
             </section>
 
-            <section id="25-setembro" className="border-b border-[#8A8588]/40 py-12 sm:py-16">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#596862]">03 · 25 de setembro</p>
-              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">O dia 25 já é uma experiência real; o desenho ainda está sendo descoberto.</h2>
+            <section id="piloto" className="border-b border-[#8A8588]/45 py-10 sm:py-14">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#512334]">03 · Experiência-piloto · 25 de setembro</p>
+              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">Um caso real de ativação, formalização e aprendizagem.</h2>
               <div className="mt-6 max-w-2xl space-y-5 text-base leading-7 text-[#2C2D33]">
-                <p>O evento não é apenas uma demonstração da plataforma nem uma simulação de serviço. Ele é a primeira experiência real em que vou organizar e testar essas premissas diante de participantes e colaboradores.</p>
-                <p>Por isso, algumas coisas já estão dadas — a data, as pessoas envolvidas e a intenção de realizar — enquanto outras ainda precisam ganhar forma. O piloto serve para observar o que precisa ser cuidado, o que precisa ser contratado e o que, eventualmente, pode virar aprendizado para o sistema.</p>
+                <p>A experiência de Luan Nogueira e Fine Hair acontece como projeto real do Studio. O piloto não reduz a responsabilidade de construir uma jornada coerente, apresentar os papéis e formalizar o que for necessário antes da realização.</p>
+                <p>Nesta primeira edição, Gleide, Bruno e Maria Clara participam sem cobrança, como investimento deliberado para testar o formato. Essa condição é pontual e não define os valores dos próximos projetos.</p>
               </div>
-
-              <ol className="mt-8 border-y border-[#8A8588]/55">
-                {eventSteps.map(([number, title, description]) => (
-                  <li key={number} className="grid gap-3 border-b border-[#8A8588]/40 py-5 last:border-b-0 sm:grid-cols-[48px_160px_1fr] sm:items-baseline">
-                    <span className="font-mono text-[10px] tracking-[0.16em] text-[#526A7A]">{number}</span>
-                    <h3 className="font-sans text-xl font-medium tracking-[-0.03em]">{title}</h3>
-                    <p className="text-sm leading-6 text-[#596862]">{description}</p>
-                  </li>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {pilotPeople.map(([name, role, detail], index) => (
+                  <article key={name} className={`border p-5 ${index === 0 ? "border-[#512334]/50 bg-[#F7E8EA]" : index === 1 ? "border-[#526A7A]/50 bg-[#E5ECEE]" : "border-[#8A8588]/45 bg-[#DDE0E2]/70"}`}>
+                    <p className="font-sans text-xl font-medium tracking-[-0.03em]">{name}</p>
+                    <p className="mt-3 font-mono text-xs uppercase tracking-[0.13em] text-[#4B354D]">{role}</p>
+                    <p className="mt-3 text-sm leading-6 text-[#596862]">{detail}</p>
+                  </article>
                 ))}
-              </ol>
-              <p className="mt-6 max-w-2xl text-sm leading-6 text-[#596862]">Maria Clara participa sem cobrança nesta primeira experiência para conhecer o formato. Essa condição é pontual e não define o preço do serviço ou dos próximos projetos.</p>
+              </div>
+            </section>
 
-              <div className="mt-10 border-t border-[#8A8588]/55 pt-8">
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">Envolvidos no projeto</p>
-                <h3 className="mt-4 max-w-2xl font-sans text-2xl font-medium leading-tight tracking-[-0.04em] sm:text-3xl">Quem dá forma a esta primeira experiência.</h3>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {projectPeople.map(([name, role, detail]) => (
-                    <article key={name} className="border border-[#8A8588]/45 bg-[#DDE0E2]/60 p-5">
-                      <h4 className="font-sans text-xl font-medium tracking-[-0.03em]">{name}</h4>
-                      <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#4B354D]">{role}</p>
-                      <p className="mt-3 text-sm leading-6 text-[#596862]">{detail}</p>
+            <section id="cronograma" className="border-b border-[#8A8588]/45 py-10 sm:py-14">
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#512334]">04 · Cronograma de trabalho</p>
+                  <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">O que acontece agora, no piloto e depois dele.</h2>
+                </div>
+                <span className="border border-[#512334]/35 bg-[#F7E8EA] px-3 py-2 font-mono text-xs uppercase tracking-[0.12em] text-[#512334]">Linha do tempo viva</span>
+              </div>
+
+              <ol className="relative mt-8 space-y-4 border-l-2 border-[#526A7A] pl-6 sm:pl-8">
+                {timeline.map(([date, title, detail], index) => (
+                  <li key={date} className="relative">
+                    <span aria-hidden="true" className={`absolute -left-[2.15rem] top-5 size-3 rounded-full border-2 border-[#F3F3F2] ${index === 0 ? "bg-[#512334]" : index === 2 ? "bg-[#4B354D]" : "bg-[#526A7A]"}`} />
+                    <article className={`border p-5 ${index === 2 ? "border-[#4B354D] bg-[#4B354D] text-[#F3F3F2]" : "border-[#8A8588]/45 bg-[#DDE0E2]/75 text-[#151419]"}`}>
+                      <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                        <span className={`font-mono text-xs uppercase tracking-[0.14em] ${index === 2 ? "text-[#F4C3CC]" : "text-[#526A7A]"}`}>{date}</span>
+                        <h3 className="font-sans text-xl font-medium tracking-[-0.03em]">{title}</h3>
+                      </div>
+                      <p className={`mt-3 text-base leading-7 ${index === 2 ? "text-[#DDE0E2]" : "text-[#596862]"}`}>{detail}</p>
                     </article>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            <section id="troca" className="border-b border-[#8A8588]/40 py-12 sm:py-16">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">04 · Diretriz de troca</p>
-              <div className="mt-5 border-l-4 border-[#596862] bg-[#DDE0E2] px-6 py-6 sm:px-8 sm:py-7">
-                <h2 className="max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">Cada ganho acompanha o que cada pessoa escolhe entregar.</h2>
-                <div className="mt-5 max-w-2xl space-y-4 text-base leading-7 text-[#2C2D33]">
-                  <p>A divisão financeira não será definida automaticamente por proximidade, origem da ideia ou uso da mesma ferramenta.</p>
-                  <p>Ela precisa acompanhar o escopo, a dedicação, a responsabilidade, o risco, os custos assumidos, o valor criado e a participação na operação.</p>
-                  <p>Por isso, eu não consigo definir um percentual de Bruno na ativação antes de entender qual entrega ele deseja assumir nela. A comissão pela venda da plataforma é uma conversa possível, mas pertence à lógica comercial do produto e precisa ser estruturada separadamente.</p>
-                </div>
-              </div>
-            </section>
-
-            <section id="perguntas" className="py-12 sm:py-16">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#512334]">06 · Perguntas para alinhar</p>
-              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">O que ainda não está redondo para mim.</h2>
-              <div className="mt-6 max-w-2xl space-y-5 text-base leading-7 text-[#2C2D33]">
-                <p>Antes de formalizar a parceria, preciso conhecer melhor a visão de Bruno sobre a plataforma e sobre a possível participação dele nas experiências. Estas perguntas não são uma cobrança; são o contorno mínimo para que eu saiba o que estou aceitando, oferecendo e construindo.</p>
-              </div>
-
-              <ol className="mt-8 border-y border-[#8A8588]/55">
-                {alignmentQuestions.map(([question, reason], index) => (
-                  <li key={question} className="grid gap-4 border-b border-[#8A8588]/40 py-6 last:border-b-0 sm:grid-cols-[40px_1fr]">
-                    <span className="font-mono text-[10px] tracking-[0.16em] text-[#4B354D]">{String(index + 1).padStart(2, "0")}</span>
-                    <div>
-                      <h3 className="font-sans text-xl font-medium leading-tight tracking-[-0.03em]">{question}</h3>
-                      <p className="mt-3 text-sm leading-6 text-[#596862]">{reason}</p>
-                    </div>
                   </li>
                 ))}
               </ol>
+            </section>
 
-              <p className="mt-8 max-w-2xl border-l-2 border-[#512334] pl-5 text-base font-medium leading-7 text-[#151419]">Com essas respostas, consigo separar o que é colaboração no evento, o que é construção e validação da plataforma e o que precisa virar contrato próprio.</p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[#8A8588]/40 pt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[#8A8588]">
-                <span>Documento vivo</span>
-                <span>·</span>
-                <span>Versão 0.2</span>
-                <span>·</span>
-                <span>Studio Gle Wolfran</span>
+            <section id="pendencias" className="py-10 sm:py-14">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#512334]">05 · Pendências a decidir</p>
+              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight tracking-[-0.05em] sm:text-4xl">O que ainda precisa de resposta antes de virar contrato.</h2>
+              <div className="mt-7 divide-y divide-[#8A8588]/45 border-y border-[#8A8588]/55">
+                {pendingDecisions.map(([title, detail], index) => (
+                  <div key={title} className="grid gap-3 py-5 sm:grid-cols-[44px_180px_1fr] sm:items-baseline">
+                    <span className="font-mono text-xs tracking-[0.14em] text-[#526A7A]">{String(index + 1).padStart(2, "0")}</span>
+                    <h3 className="font-sans text-xl font-medium tracking-[-0.03em]">{title}</h3>
+                    <p className="text-base leading-7 text-[#596862]">{detail}</p>
+                  </div>
+                ))}
               </div>
-              <div className="mt-10 border-l-4 border-[#512334] bg-[#DDE0E2] px-6 py-5 text-sm leading-6 text-[#493735] sm:px-8">
-                <p className="font-semibold text-[#512334]">Este documento não é uma proposta comercial.</p>
-                <p className="mt-2">É uma base de entendimento para que a conversa e os contratos partam de uma visão explicitada.</p>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="border-l-4 border-[#512334] bg-[#F7E8EA] p-5 text-base leading-7 text-[#493735]">
+                  <p className="font-semibold text-[#512334]">Autoria, dados e contatos</p>
+                  <p className="mt-2">Método, repertório, marca, contatos e dados dos clientes de Gleide permanecem do Studio. Qualquer ideia específica que possa virar função do sistema deve ser consultada e registrada por escrito.</p>
+                </div>
+                <div className="border-l-4 border-[#526A7A] bg-[#E5ECEE] p-5 text-base leading-7 text-[#2C2D33]">
+                  <p className="font-semibold text-[#526A7A]">Uso e indicação da plataforma</p>
+                  <p className="mt-2">O Studio usa a versão padrão sem custo enquanto o sistema estiver no ar. Indicações feitas por escrito antes do fechamento geram a comissão proposta, em contrato próprio entre Gleide e Bruno.</p>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <AlignmentNotes />
+              </div>
+
+              <div className="mt-10 border-l-4 border-[#512334] bg-[#DDE0E2] px-6 py-5 text-base leading-7 text-[#493735] sm:px-8">
+                <p className="font-semibold text-[#512334]">Natureza deste documento</p>
+                <p className="mt-2">Este acordo registra a base de trabalho que está sendo consolidada. Cada experiência, indicação, entrega técnica e relação com cliente deverá ter seu próprio escopo e contrato antes de gerar obrigação para qualquer parte.</p>
               </div>
             </section>
           </div>
         </div>
       </article>
 
-      <footer className="border-t border-[#8A8588]/40 bg-[#DDE0E2] px-5 py-6 sm:px-8">
-        <div className="mx-auto flex max-w-[var(--content-width)] flex-wrap items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#596862]">
-          <Link href="/" className="text-[#151419] transition hover:text-[#512334]">Studio Gle Wolfran</Link>
-          <Link href="/contato" className="text-[#512334] transition hover:text-[#4B354D]">Contato</Link>
+      <footer className="border-t border-[#8A8588]/45 bg-[#151419] px-5 py-7 text-[#DDE0E2] sm:px-8">
+        <div className="mx-auto flex max-w-[var(--content-width)] flex-wrap items-center justify-between gap-3 font-mono text-xs uppercase tracking-[0.13em]">
+          <Link href="/" className="text-[#F3F3F2] transition hover:text-[#F4C3CC]">Studio Gle Wolfran</Link>
+          <Link href="/contato" className="text-[#DDE0E2] transition hover:text-[#F4C3CC]">Contato</Link>
           <span>Ariquemes · Rondônia · 2026</span>
         </div>
       </footer>
